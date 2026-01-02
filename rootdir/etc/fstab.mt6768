@@ -46,5 +46,8 @@ product                                                  /product               
 /dev/block/platform/bootdevice/by-name/otp               /otp                         emmc        defaults              defaults
 /dev/block/platform/bootdevice/by-name/vbmeta            /vbmeta                      emmc        defaults              defaults
 
-# ZRAM
-/dev/block/zram0                                         none                         swap        defaults              zramsize=55%
+# ZRAM                                                                                                                  can use values like 55%
+#                                                                                                                       example: 2 * 1024 * 1024 * 1024
+# /dev/block/zram0                                         none                         swap        defaults              zramsize=55%
+
+/dev/block/zram0                                         none                         swap        defaults              zramsize=2147483648

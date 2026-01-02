@@ -8,14 +8,14 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common voltage stuff.
-$(call inherit-product, vendor/voltage/config/common_full_phone.mk)
+# Inherit some common lineage stuff.
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Inherit from selene device
 $(call inherit-product, device/xiaomi/selene/device.mk)
 
 PRODUCT_DEVICE := selene
-PRODUCT_NAME := voltage_selene
+PRODUCT_NAME := lineage_selene
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Redmi 10
 PRODUCT_MANUFACTURER := xiaomi
@@ -32,3 +32,10 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     SystemName=$(PRODUCT_SYSTEM_NAME) \
     ProductModel=$(PRODUCT_SYSTEM_DEVICE) \
     DeviceProduct=$(PRODUCT_SYSTEM_NAME)
+
+# Evolution X Flags
+EVO_BUILD_TYPE := Unofficial
+WITH_GMS := true
+TARGET_ENABLE_BLUR := true
+TARGET_HAS_UDFPS := false
+BUILD_BCR := true

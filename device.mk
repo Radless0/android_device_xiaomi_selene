@@ -78,7 +78,7 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
 
-$(call soong_config_set_bool,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
+SOONG_CONFIG_android_hardware_audio_skip_speaker_layout_channel_mask_field := true
 
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl \
@@ -140,10 +140,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fastbootd
 
-# Fingerprint
+# Fingerprint - Sadece HIDL ve Vendor Blobları
 PRODUCT_PACKAGES += \
     com.fingerprints.extension@1.0.vendor \
-    android.hardware.biometrics.fingerprint-service.xiaomi \
     vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor
 
 # FM
@@ -349,7 +348,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
 DEVICE_PACKAGE_OVERLAYS += \
-    $(DEVICE_PATH)/overlay-voltage
+    $(DEVICE_PATH)/overlay-lineage
 
 PRODUCT_PACKAGES += \
     FrameworksResOverlaySelene \

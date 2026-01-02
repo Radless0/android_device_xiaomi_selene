@@ -56,9 +56,12 @@ TARGET_SCREEN_DENSITY := 440
 BOARD_HAVE_MTK_FM := true
 
 # HIDL
+# VINTF
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     hardware/mediatek/vintf/mediatek_framework_compatibility_matrix.xml \
-    hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml
+    hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml \
+    device/xiaomi/selene/configs/vintf/selene_framework_compatibility_matrix.xml
+
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/vintf/manifest.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/vintf/compatibility_matrix.xml
 
@@ -73,7 +76,17 @@ BOARD_RAMDISK_OFFSET := 0x07c08000
 BOARD_BOOT_HEADER_VERSION := 2
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)-kernel/dtbo.img
+# DTBO
+# Özel dtbo.mk dosyasını kullanma, sistemin standart yolunu kullan
+# BOARD_CUSTOM_DTBOIMG_MK := $(DEVICE_PATH)/dtbo/dtbo.mk -> Bunu devre dışı bırak
+
+# DTBO imajının nereye üretileceğini sisteme net bir isimle söyle
+# BOARD_PREBUILT_DTBOIMAGE := $(PRODUCT_OUT)/dtbo.img
+
+# Kernel derlenirken DTBO'ların da derlenmesini zorunlu tut
+BOARD_KERNEL_SEPARATED_DTBO := true
+TARGET_NEEDS_DTBO := true
+BOARD_INCLUDE_RECOVERY_DTBO := true
 
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
